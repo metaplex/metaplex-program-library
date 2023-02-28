@@ -12,686 +12,684 @@ use thiserror::Error;
 #[derive(Clone, Debug, Eq, Error, FromPrimitive, PartialEq)]
 pub enum MetadataError {
     /// 0 Failed to unpack instruction data
-    #[error("Failed to unpack instruction data")]
+    #[error("")]
     InstructionUnpackError,
 
     /// Failed to pack instruction data
-    #[error("Failed to pack instruction data")]
+    #[error("")]
     InstructionPackError,
 
     /// Lamport balance below rent-exempt threshold.
-    #[error("Lamport balance below rent-exempt threshold")]
+    #[error("")]
     NotRentExempt,
 
     /// Already initialized
-    #[error("Already initialized")]
+    #[error("")]
     AlreadyInitialized,
 
     /// Uninitialized
-    #[error("Uninitialized")]
+    #[error("")]
     Uninitialized,
 
     ///  Metadata's key must match seed of ['metadata', program id, mint] provided
-    #[error(" Metadata's key must match seed of ['metadata', program id, mint] provided")]
+    #[error("")]
     InvalidMetadataKey,
 
     ///  Edition's key must match seed of ['metadata', program id, name, 'edition'] provided
-    #[error("Edition's key must match seed of ['metadata', program id, name, 'edition'] provided")]
+    #[error("")]
     InvalidEditionKey,
 
     /// Update Authority given does not match
-    #[error("Update Authority given does not match")]
+    #[error("")]
     UpdateAuthorityIncorrect,
 
     /// Update Authority needs to be signer to update metadata
-    #[error("Update Authority needs to be signer to update metadata")]
+    #[error("")]
     UpdateAuthorityIsNotSigner,
 
     /// You must be the mint authority and signer on this transaction
-    #[error("You must be the mint authority and signer on this transaction")]
+    #[error("")]
     NotMintAuthority,
 
     /// 10 - Mint authority provided does not match the authority on the mint
-    #[error("Mint authority provided does not match the authority on the mint")]
+    #[error("")]
     InvalidMintAuthority,
 
     /// Name too long
-    #[error("Name too long")]
+    #[error("")]
     NameTooLong,
 
     /// Symbol too long
-    #[error("Symbol too long")]
+    #[error("")]
     SymbolTooLong,
 
     /// URI too long
-    #[error("URI too long")]
+    #[error("")]
     UriTooLong,
 
     /// Update authority must be equivalent to the metadata's authority and also signer of this transaction
-    #[error("Update authority must be equivalent to the metadata's authority and also signer of this transaction")]
+    #[error("")]
     UpdateAuthorityMustBeEqualToMetadataAuthorityAndSigner,
 
     /// Mint given does not match mint on Metadata
-    #[error("Mint given does not match mint on Metadata")]
+    #[error("")]
     MintMismatch,
 
     /// Editions must have exactly one token
-    #[error("Editions must have exactly one token")]
+    #[error("")]
     EditionsMustHaveExactlyOneToken,
 
     /// Maximum editions printed already
-    #[error("Maximum editions printed already")]
+    #[error("")]
     MaxEditionsMintedAlready,
 
     /// Token mint to failed
-    #[error("Token mint to failed")]
+    #[error("")]
     TokenMintToFailed,
 
     /// The master edition record passed must match the master record on the edition given
-    #[error("The master edition record passed must match the master record on the edition given")]
+    #[error("")]
     MasterRecordMismatch,
 
     /// 20 - The destination account does not have the right mint
-    #[error("The destination account does not have the right mint")]
+    #[error("")]
     DestinationMintMismatch,
 
     /// An edition can only mint one of its kind!
-    #[error("An edition can only mint one of its kind!")]
+    #[error("")]
     EditionAlreadyMinted,
 
     /// Printing mint decimals should be zero
-    #[error("Printing mint decimals should be zero")]
+    #[error("")]
     PrintingMintDecimalsShouldBeZero,
 
     /// OneTimePrintingAuthorizationMint mint decimals should be zero
-    #[error("OneTimePrintingAuthorization mint decimals should be zero")]
+    #[error("")]
     OneTimePrintingAuthorizationMintDecimalsShouldBeZero,
 
     /// Edition mint decimals should be zero
-    #[error("EditionMintDecimalsShouldBeZero")]
+    #[error("")]
     EditionMintDecimalsShouldBeZero,
 
     /// Token burn failed
-    #[error("Token burn failed")]
+    #[error("")]
     TokenBurnFailed,
 
     /// The One Time authorization mint does not match that on the token account!
-    #[error("The One Time authorization mint does not match that on the token account!")]
+    #[error("")]
     TokenAccountOneTimeAuthMintMismatch,
 
     /// Derived key invalid
-    #[error("Derived key invalid")]
+    #[error("")]
     DerivedKeyInvalid,
 
     /// The Printing mint does not match that on the master edition!
-    #[error("The Printing mint does not match that on the master edition!")]
+    #[error("")]
     PrintingMintMismatch,
 
     /// The  One Time Printing Auth mint does not match that on the master edition!
-    #[error("The One Time Printing Auth mint does not match that on the master edition!")]
+    #[error("")]
     OneTimePrintingAuthMintMismatch,
 
     /// 30 - The mint of the token account does not match the Printing mint!
-    #[error("The mint of the token account does not match the Printing mint!")]
+    #[error("")]
     TokenAccountMintMismatch,
 
     /// The mint of the token account does not match the master metadata mint!
-    #[error("The mint of the token account does not match the master metadata mint!")]
+    #[error("")]
     TokenAccountMintMismatchV2,
 
     /// Not enough tokens to mint a limited edition
-    #[error("Not enough tokens to mint a limited edition")]
+    #[error("")]
     NotEnoughTokens,
 
     /// The mint on your authorization token holding account does not match your Printing mint!
-    #[error(
-        "The mint on your authorization token holding account does not match your Printing mint!"
-    )]
+    #[error("")]
     PrintingMintAuthorizationAccountMismatch,
 
     /// The authorization token account has a different owner than the update authority for the master edition!
-    #[error("The authorization token account has a different owner than the update authority for the master edition!")]
+    #[error("")]
     AuthorizationTokenAccountOwnerMismatch,
 
     /// This feature is currently disabled.
-    #[error("This feature is currently disabled.")]
+    #[error("")]
     Disabled,
 
     /// Creators list too long
-    #[error("Creators list too long")]
+    #[error("")]
     CreatorsTooLong,
 
     /// Creators must be at least one if set
-    #[error("Creators must be at least one if set")]
+    #[error("")]
     CreatorsMustBeAtleastOne,
 
     /// If using a creators array, you must be one of the creators listed
-    #[error("If using a creators array, you must be one of the creators listed")]
+    #[error("")]
     MustBeOneOfCreators,
 
     /// This metadata does not have creators
-    #[error("This metadata does not have creators")]
+    #[error("")]
     NoCreatorsPresentOnMetadata,
 
     /// 40 - This creator address was not found
-    #[error("This creator address was not found")]
+    #[error("")]
     CreatorNotFound,
 
     /// Basis points cannot be more than 10000
-    #[error("Basis points cannot be more than 10000")]
+    #[error("")]
     InvalidBasisPoints,
 
     /// Primary sale can only be flipped to true and is immutable
-    #[error("Primary sale can only be flipped to true and is immutable")]
+    #[error("")]
     PrimarySaleCanOnlyBeFlippedToTrue,
 
     /// Owner does not match that on the account given
-    #[error("Owner does not match that on the account given")]
+    #[error("")]
     OwnerMismatch,
 
     /// This account has no tokens to be used for authorization
-    #[error("This account has no tokens to be used for authorization")]
+    #[error("")]
     NoBalanceInAccountForAuthorization,
 
     /// Share total must equal 100 for creator array
-    #[error("Share total must equal 100 for creator array")]
+    #[error("")]
     ShareTotalMustBe100,
 
     /// This reservation list already exists!
-    #[error("This reservation list already exists!")]
+    #[error("")]
     ReservationExists,
 
     /// This reservation list does not exist!
-    #[error("This reservation list does not exist!")]
+    #[error("")]
     ReservationDoesNotExist,
 
     /// This reservation list exists but was never set with reservations
-    #[error("This reservation list exists but was never set with reservations")]
+    #[error("")]
     ReservationNotSet,
 
     /// This reservation list has already been set!
-    #[error("This reservation list has already been set!")]
+    #[error("")]
     ReservationAlreadyMade,
 
     /// 50 - Provided more addresses than max allowed in single reservation
-    #[error("Provided more addresses than max allowed in single reservation")]
+    #[error("")]
     BeyondMaxAddressSize,
 
     /// NumericalOverflowError
-    #[error("NumericalOverflowError")]
+    #[error("")]
     NumericalOverflowError,
 
     /// This reservation would go beyond the maximum supply of the master edition!
-    #[error("This reservation would go beyond the maximum supply of the master edition!")]
+    #[error("")]
     ReservationBreachesMaximumSupply,
 
     /// Address not in reservation!
-    #[error("Address not in reservation!")]
+    #[error("")]
     AddressNotInReservation,
 
     /// You cannot unilaterally verify another creator, they must sign
-    #[error("You cannot unilaterally verify another creator, they must sign")]
+    #[error("")]
     CannotVerifyAnotherCreator,
 
     /// You cannot unilaterally unverify another creator
-    #[error("You cannot unilaterally unverify another creator")]
+    #[error("")]
     CannotUnverifyAnotherCreator,
 
     /// In initial reservation setting, spots remaining should equal total spots
-    #[error("In initial reservation setting, spots remaining should equal total spots")]
+    #[error("")]
     SpotMismatch,
 
     /// Incorrect account owner
-    #[error("Incorrect account owner")]
+    #[error("")]
     IncorrectOwner,
 
     /// printing these tokens would breach the maximum supply limit of the master edition
-    #[error("printing these tokens would breach the maximum supply limit of the master edition")]
+    #[error("")]
     PrintingWouldBreachMaximumSupply,
 
     /// Data is immutable
-    #[error("Data is immutable")]
+    #[error("")]
     DataIsImmutable,
 
     /// 60 - No duplicate creator addresses
-    #[error("No duplicate creator addresses")]
+    #[error("")]
     DuplicateCreatorAddress,
 
     /// Reservation spots remaining should match total spots when first being created
-    #[error("Reservation spots remaining should match total spots when first being created")]
+    #[error("")]
     ReservationSpotsRemainingShouldMatchTotalSpotsAtStart,
 
     /// Invalid token program
-    #[error("Invalid token program")]
+    #[error("")]
     InvalidTokenProgram,
 
     /// Data type mismatch
-    #[error("Data type mismatch")]
+    #[error("")]
     DataTypeMismatch,
 
     /// Beyond alotted address size in reservation!
-    #[error("Beyond alotted address size in reservation!")]
+    #[error("")]
     BeyondAlottedAddressSize,
 
     /// The reservation has only been partially alotted
-    #[error("The reservation has only been partially alotted")]
+    #[error("")]
     ReservationNotComplete,
 
     /// You cannot splice over an existing reservation!
-    #[error("You cannot splice over an existing reservation!")]
+    #[error("")]
     TriedToReplaceAnExistingReservation,
 
     /// Invalid operation
-    #[error("Invalid operation")]
+    #[error("")]
     InvalidOperation,
 
     /// Invalid owner
-    #[error("Invalid Owner")]
+    #[error("")]
     InvalidOwner,
 
     /// Printing mint supply must be zero for conversion
-    #[error("Printing mint supply must be zero for conversion")]
+    #[error("")]
     PrintingMintSupplyMustBeZeroForConversion,
 
     /// 70 - One Time Auth mint supply must be zero for conversion
-    #[error("One Time Auth mint supply must be zero for conversion")]
+    #[error("")]
     OneTimeAuthMintSupplyMustBeZeroForConversion,
 
     /// You tried to insert one edition too many into an edition mark pda
-    #[error("You tried to insert one edition too many into an edition mark pda")]
+    #[error("")]
     InvalidEditionIndex,
 
     // In the legacy system the reservation needs to be of size one for cpu limit reasons
-    #[error("In the legacy system the reservation needs to be of size one for cpu limit reasons")]
+    #[error("")]
     ReservationArrayShouldBeSizeOne,
 
     /// Is Mutable can only be flipped to false
-    #[error("Is Mutable can only be flipped to false")]
+    #[error("")]
     IsMutableCanOnlyBeFlippedToFalse,
 
-    #[error("Collection cannot be verified in this instruction")]
+    #[error("")]
     CollectionCannotBeVerifiedInThisInstruction,
 
-    #[error("This instruction was deprecated in a previous release and is now removed")]
+    #[error("")]
     Removed, //For the curious we cannot get rid of an instruction in the enum or move them or it will break our api, this is a friendly way to get rid of them
 
-    #[error("This token use method is burn and there are no remaining uses, it must be burned")]
+    #[error("")]
     MustBeBurned,
 
-    #[error("This use method is invalid")]
+    #[error("")]
     InvalidUseMethod,
 
-    #[error("Cannot Change Use Method after the first use")]
+    #[error("")]
     CannotChangeUseMethodAfterFirstUse,
 
-    #[error("Cannot Change Remaining or Available uses after the first use")]
+    #[error("")]
     CannotChangeUsesAfterFirstUse,
 
     // 80
-    #[error("Collection Not Found on Metadata")]
+    #[error("")]
     CollectionNotFound,
 
-    #[error("Collection Update Authority is invalid")]
+    #[error("")]
     InvalidCollectionUpdateAuthority,
 
-    #[error("Collection Must Be a Unique Master Edition v2")]
+    #[error("")]
     CollectionMustBeAUniqueMasterEdition,
 
-    #[error("The Use Authority Record Already Exists, to modify it Revoke, then Approve")]
+    #[error("")]
     UseAuthorityRecordAlreadyExists,
 
-    #[error("The Use Authority Record is empty or already revoked")]
+    #[error("")]
     UseAuthorityRecordAlreadyRevoked,
 
-    #[error("This token has no uses")]
+    #[error("")]
     Unusable,
 
-    #[error("There are not enough Uses left on this token.")]
+    #[error("")]
     NotEnoughUses,
 
-    #[error("This Collection Authority Record Already Exists.")]
+    #[error("")]
     CollectionAuthorityRecordAlreadyExists,
 
-    #[error("This Collection Authority Record Does Not Exist.")]
+    #[error("")]
     CollectionAuthorityDoesNotExist,
 
-    #[error("This Use Authority Record is invalid.")]
+    #[error("")]
     InvalidUseAuthorityRecord,
 
     // 90
-    #[error("This Collection Authority Record is invalid.")]
+    #[error("")]
     InvalidCollectionAuthorityRecord,
 
-    #[error("Metadata does not match the freeze authority on the mint")]
+    #[error("")]
     InvalidFreezeAuthority,
 
-    #[error("All tokens in this account have not been delegated to this user.")]
+    #[error("")]
     InvalidDelegate,
 
-    #[error("Creator can not be adjusted once they are verified.")]
+    #[error("")]
     CannotAdjustVerifiedCreator,
 
-    #[error("Verified creators cannot be removed.")]
+    #[error("")]
     CannotRemoveVerifiedCreator,
 
-    #[error("Can not wipe verified creators.")]
+    #[error("")]
     CannotWipeVerifiedCreators,
 
-    #[error("Not allowed to change seller fee basis points.")]
+    #[error("")]
     NotAllowedToChangeSellerFeeBasisPoints,
 
     /// Edition override cannot be zero
-    #[error("Edition override cannot be zero")]
+    #[error("")]
     EditionOverrideCannotBeZero,
 
-    #[error("Invalid User")]
+    #[error("")]
     InvalidUser,
 
     /// Revoke Collection Authority signer is incorrect
-    #[error("Revoke Collection Authority signer is incorrect")]
+    #[error("")]
     RevokeCollectionAuthoritySignerIncorrect,
 
     // 100
-    #[error("Token close failed")]
+    #[error("")]
     TokenCloseFailed,
 
     /// 101 - Calling v1.3 function on unsized collection
-    #[error("Can't use this function on unsized collection")]
+    #[error("")]
     UnsizedCollection,
 
     /// 102 - Calling v1.2 function on a sized collection
-    #[error("Can't use this function on a sized collection")]
+    #[error("")]
     SizedCollection,
 
     /// 103 - Can't burn a verified member of a collection w/o providing collection metadata account
-    #[error(
-        "Can't burn a verified member of a collection w/o providing collection metadata account"
-    )]
+    #[error("")]
     MissingCollectionMetadata,
 
     /// 104 - This NFT is not a member of the specified collection.
-    #[error("This NFT is not a member of the specified collection.")]
+    #[error("")]
     NotAMemberOfCollection,
 
     /// 105 - This NFT is not a verified member of the specified collection.
-    #[error("This NFT is not a verified member of the specified collection.")]
+    #[error("")]
     NotVerifiedMemberOfCollection,
 
     /// 106 - This NFT is not a collection parent NFT.
-    #[error("This NFT is not a collection parent NFT.")]
+    #[error("")]
     NotACollectionParent,
 
     /// 107 - Could not determine a TokenStandard type.
-    #[error("Could not determine a TokenStandard type.")]
+    #[error("")]
     CouldNotDetermineTokenStandard,
 
     /// 108 - Missing edition account for a non-fungible token type.
-    #[error("This mint account has an edition but none was provided.")]
+    #[error("")]
     MissingEditionAccount,
 
     /// 109 - Not a Master Edition
-    #[error("This edition is not a Master Edition")]
+    #[error("")]
     NotAMasterEdition,
 
     /// 110 - Master Edition has prints.
-    #[error("This Master Edition has existing prints")]
+    #[error("")]
     MasterEditionHasPrints,
 
     /// 111 - Borsh Deserialization Error
-    #[error("Borsh Deserialization Error")]
+    #[error("")]
     BorshDeserializationError,
 
     /// 112 - Cannot update a verified colleciton in this command
-    #[error("Cannot update a verified collection in this command")]
+    #[error("")]
     CannotUpdateVerifiedCollection,
 
     /// 113 - Edition Account Doesnt Match Collection
-    #[error("Edition account doesnt match collection ")]
+    #[error("")]
     CollectionMasterEditionAccountInvalid,
 
     /// 114 - Item is already verified.
-    #[error("Item is already verified.")]
+    #[error("")]
     AlreadyVerified,
 
     /// 115 - Item is already unverified.
-    #[error("Item is already unverified.")]
+    #[error("")]
     AlreadyUnverified,
 
     /// 116 - Not a Print Edition
-    #[error("This edition is not a Print Edition")]
+    #[error("")]
     NotAPrintEdition,
 
     /// 117 - Invalid Edition Marker
-    #[error("Invalid Master Edition")]
+    #[error("")]
     InvalidMasterEdition,
 
     /// 118 - Invalid Edition Marker
-    #[error("Invalid Print Edition")]
+    #[error("")]
     InvalidPrintEdition,
 
     /// 119 - Invalid Edition Marker
-    #[error("Invalid Edition Marker")]
+    #[error("")]
     InvalidEditionMarker,
 
     /// 120 - Reservation List is Deprecated
-    #[error("Reservation List is Deprecated")]
+    #[error("")]
     ReservationListDeprecated,
 
     /// 121 - Print Edition doesn't match Master Edition
-    #[error("Print Edition does not match Master Edition")]
+    #[error("")]
     PrintEditionDoesNotMatchMasterEdition,
 
     /// 122 - Edition Number greater than max supply
-    #[error("Edition Number greater than max supply")]
+    #[error("")]
     EditionNumberGreaterThanMaxSupply,
 
     /// 123 - Must unverify before migrating collections.
-    #[error("Must unverify before migrating collections.")]
+    #[error("")]
     MustUnverify,
 
     /// 124 - Invalid Escrow Account Bump Seed
-    #[error("Invalid Escrow Account Bump Seed")]
+    #[error("")]
     InvalidEscrowBumpSeed,
 
     /// 125 - Must be Escrow Authority
-    #[error("Must Escrow Authority")]
+    #[error("")]
     MustBeEscrowAuthority,
 
     /// 126 - Invalid System Program
-    #[error("Invalid System Program")]
+    #[error("")]
     InvalidSystemProgram,
 
     /// 127 - Must be a Non Fungible Token
-    #[error("Must be a Non Fungible Token")]
+    #[error("")]
     MustBeNonFungible,
 
     /// 128 - Insufficient tokens for transfer
-    #[error("Insufficient tokens for transfer")]
+    #[error("")]
     InsufficientTokens,
 
     /// 129 - Borsh Serialization Error
-    #[error("Borsh Serialization Error")]
+    #[error("")]
     BorshSerializationError,
 
     /// 130 - Cannot create NFT with no Freeze Authority.
-    #[error("Cannot create NFT with no Freeze Authority.")]
+    #[error("")]
     NoFreezeAuthoritySet,
 
     /// 131
-    #[error("Invalid collection size change")]
+    #[error("")]
     InvalidCollectionSizeChange,
 
     /// 132
-    #[error("Invalid bubblegum signer")]
+    #[error("")]
     InvalidBubblegumSigner,
     /// 133
-    #[error("Escrow parent cannot have a delegate")]
+    #[error("")]
     EscrowParentHasDelegate,
 
     /// 134
-    #[error("Mint needs to be signer to initialize the account")]
+    #[error("")]
     MintIsNotSigner,
 
     /// 135
-    #[error("Invalid token standard")]
+    #[error("")]
     InvalidTokenStandard,
 
     /// 136
-    #[error("Invalid mint account for specified token standard")]
+    #[error("")]
     InvalidMintForTokenStandard,
 
     /// 137
-    #[error("Invalid authorization rules account")]
+    #[error("")]
     InvalidAuthorizationRules,
 
     /// 138
-    #[error("Missing authorization rules account")]
+    #[error("")]
     MissingAuthorizationRules,
 
     /// 139
-    #[error("Missing programmable configuration")]
+    #[error("")]
     MissingProgrammableConfig,
 
     /// 140
-    #[error("Invalid programmable configuration")]
+    #[error("")]
     InvalidProgrammableConfig,
 
     /// 141
-    #[error("Delegate already exists")]
+    #[error("")]
     DelegateAlreadyExists,
 
     /// 142
-    #[error("Delegate not found")]
+    #[error("")]
     DelegateNotFound,
 
     /// 143
-    #[error("Required account not set in instruction builder")]
+    #[error("")]
     MissingAccountInBuilder,
 
     /// 144
-    #[error("Required argument not set in instruction builder")]
+    #[error("")]
     MissingArgumentInBuilder,
 
     /// 145
-    #[error("Feature not supported currently")]
+    #[error("")]
     FeatureNotSupported,
 
     /// 146
-    #[error("Invalid system wallet")]
+    #[error("")]
     InvalidSystemWallet,
 
     /// 147
-    #[error("Only the sale delegate can transfer while its set")]
+    #[error("")]
     OnlySaleDelegateCanTransfer,
 
     /// 148
-    #[error("Missing token account")]
+    #[error("")]
     MissingTokenAccount,
 
     /// 149
-    #[error("Missing SPL token program")]
+    #[error("")]
     MissingSplTokenProgram,
 
     /// 150
-    #[error("Missing authorization rules program")]
+    #[error("")]
     MissingAuthorizationRulesProgram,
 
     /// 151
-    #[error("Invalid delegate role for transfer")]
+    #[error("")]
     InvalidDelegateRoleForTransfer,
 
     /// 152
-    #[error("Invalid transfer authority")]
+    #[error("")]
     InvalidTransferAuthority,
 
     /// 153
-    #[error("Instruction not supported for ProgrammableNonFungible assets")]
+    #[error("")]
     InstructionNotSupported,
 
     /// 154
-    #[error("Public key does not match expected value")]
+    #[error("")]
     KeyMismatch,
 
     /// 155
-    #[error("Token is locked")]
+    #[error("")]
     LockedToken,
 
     /// 156
-    #[error("Token is unlocked")]
+    #[error("")]
     UnlockedToken,
 
     /// 157
-    #[error("Missing delegate role")]
+    #[error("")]
     MissingDelegateRole,
 
     /// 158
-    #[error("Invalid authority type")]
+    #[error("")]
     InvalidAuthorityType,
 
     /// 159
-    #[error("Missing token record account")]
+    #[error("")]
     MissingTokenRecord,
 
     /// 160
-    #[error("Mint supply must be zero for programmable assets")]
+    #[error("")]
     MintSupplyMustBeZero,
 
     /// 161
-    #[error("Data is empty or zeroed")]
+    #[error("")]
     DataIsEmptyOrZeroed,
 
     /// 162
-    #[error("Missing token owner")]
+    #[error("")]
     MissingTokenOwnerAccount,
 
     /// 163
-    #[error("Master edition account has an invalid length")]
+    #[error("")]
     InvalidMasterEditionAccountLength,
 
     /// 164
-    #[error("Incorrect token state")]
+    #[error("")]
     IncorrectTokenState,
 
     /// 165
-    #[error("Invalid delegate role")]
+    #[error("")]
     InvalidDelegateRole,
 
     /// 166
-    #[error("Print supply is required for non-fungibles")]
+    #[error("")]
     MissingPrintSupply,
 
     /// 167
-    #[error("Missing master edition account")]
+    #[error("")]
     MissingMasterEditionAccount,
 
     /// 168
-    #[error("Amount must be greater than zero")]
+    #[error("")]
     AmountMustBeGreaterThanZero,
 
     /// 169
-    #[error("Invalid delegate args")]
+    #[error("")]
     InvalidDelegateArgs,
 
     /// 170
-    #[error("Missing address for locked transfer")]
+    #[error("")]
     MissingLockedTransferAddress,
 
     /// 171
-    #[error("Invalid destination address for locked transfer")]
+    #[error("")]
     InvalidLockedTransferAddress,
 
     /// 172
-    #[error("Exceeded account realloc increase limit")]
+    #[error("")]
     DataIncrementLimitExceeded,
 
     /// 173
-    #[error("Cannot update the rule set of a programmable asset that has a delegate")]
+    #[error("")]
     CannotUpdateAssetWithDelegate,
-    #[error("Invalid Associated Token Account Program")]
-    InvalidAssociatedTokenAccountProgram,
 
     /// 174
-    #[error("Invalid InstructionsSysvar")]
+    #[error("")]
+    InvalidAssociatedTokenAccountProgram,
+
+    /// 175
+    #[error("")]
     InvalidInstructionsSysvar,
 
     /// 175
@@ -701,7 +699,7 @@ pub enum MetadataError {
 
 impl PrintProgramError for MetadataError {
     fn print<E>(&self) {
-        msg!(&self.to_string());
+        msg!("{:?}", &self);
     }
 }
 

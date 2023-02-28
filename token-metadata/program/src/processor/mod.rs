@@ -201,11 +201,9 @@ fn process_legacy_instruction<'a>(
             )
         }
         MetadataInstruction::DeprecatedCreateMasterEdition(_args) => {
-            msg!("IX: Deprecated Create Master Edition, Removed in 1.1.0");
             Err(MetadataError::Removed.into())
         }
         MetadataInstruction::DeprecatedMintNewEditionFromMasterEditionViaPrintingToken => {
-            msg!("IX: Deprecated Mint New Edition from Master Edition Via Token, Removed in 1.1.0");
             Err(MetadataError::Removed.into())
         }
         MetadataInstruction::UpdatePrimarySaleHappenedViaToken => {
@@ -213,13 +211,9 @@ fn process_legacy_instruction<'a>(
             process_update_primary_sale_happened_via_token(program_id, accounts)
         }
         MetadataInstruction::DeprecatedSetReservationList(_args) => {
-            msg!("IX: Deprecated Set Reservation List, Removed in 1.1.0");
             Err(MetadataError::Removed.into())
         }
-        MetadataInstruction::DeprecatedCreateReservationList => {
-            msg!("IX: Deprecated Create Reservation List, Removed in 1.1.0");
-            Err(MetadataError::Removed.into())
-        }
+        MetadataInstruction::DeprecatedCreateReservationList => Err(MetadataError::Removed.into()),
         MetadataInstruction::SignMetadata => {
             msg!("IX: Sign Metadata");
             process_sign_metadata(program_id, accounts)
@@ -229,11 +223,9 @@ fn process_legacy_instruction<'a>(
             process_remove_creator_verification(program_id, accounts)
         }
         MetadataInstruction::DeprecatedMintPrintingTokensViaToken(_args) => {
-            msg!("IX: Deprecated Mint Printing Tokens Via Token, Removed in 1.1.0");
             Err(MetadataError::Removed.into())
         }
         MetadataInstruction::DeprecatedMintPrintingTokens(_args) => {
-            msg!("IX: Deprecated Mint Printing Tokens, Removed in 1.1.0");
             Err(MetadataError::Removed.into())
         }
         MetadataInstruction::CreateMasterEdition(args) => {
@@ -258,9 +250,6 @@ fn process_legacy_instruction<'a>(
             process_convert_master_edition_v1_to_v2(program_id, accounts)
         }
         MetadataInstruction::MintNewEditionFromMasterEditionViaVaultProxy(_args) => {
-            msg!(
-                "IX: Mint New Edition from Master Edition Via Vault Proxy, deprecated as of 1.4.0."
-            );
             Err(MetadataError::Removed.into())
         }
         MetadataInstruction::PuffMetadata => {
