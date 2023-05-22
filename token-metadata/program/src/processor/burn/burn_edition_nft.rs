@@ -1,7 +1,6 @@
 use mpl_utils::assert_signer;
 use solana_program::{
-    account_info::{next_account_info, AccountInfo},
-    entrypoint::ProgramResult,
+    account_info::AccountInfo, entrypoint::ProgramResult, program_error::ProgramError,
     pubkey::Pubkey,
 };
 use spl_token::state::Account as TokenAccount;
@@ -20,18 +19,24 @@ pub fn process_burn_edition_nft<'a>(
     program_id: &Pubkey,
     accounts: &'a [AccountInfo<'a>],
 ) -> ProgramResult {
-    let account_info_iter = &mut accounts.iter();
-
-    let metadata_info = next_account_info(account_info_iter)?;
-    let owner_info = next_account_info(account_info_iter)?;
-    let print_edition_mint_info = next_account_info(account_info_iter)?;
-    let master_edition_mint_info = next_account_info(account_info_iter)?;
-    let print_edition_token_info = next_account_info(account_info_iter)?;
-    let master_edition_token_info = next_account_info(account_info_iter)?;
-    let master_edition_info = next_account_info(account_info_iter)?;
-    let print_edition_info = next_account_info(account_info_iter)?;
-    let edition_marker_info = next_account_info(account_info_iter)?;
-    let spl_token_program_info = next_account_info(account_info_iter)?;
+    let [metadata_info, owner_info, print_edition_mint_info, master_edition_mint_info, print_edition_token_info, master_edition_token_info, master_edition_info, print_edition_info, edition_marker_info, spl_token_program_info] =
+        match accounts {
+            [metadata_info, owner_info, print_edition_mint_info, master_edition_mint_info, print_edition_token_info, master_edition_token_info, master_edition_info, print_edition_info, edition_marker_info, spl_token_program_info] => {
+                [
+                    metadata_info,
+                    owner_info,
+                    print_edition_mint_info,
+                    master_edition_mint_info,
+                    print_edition_token_info,
+                    master_edition_token_info,
+                    master_edition_info,
+                    print_edition_info,
+                    edition_marker_info,
+                    spl_token_program_info,
+                ]
+            }
+            _ => return Err(ProgramError::NotEnoughAccountKeys),
+        };
 
     // Validate accounts
     // Owner is a signer.

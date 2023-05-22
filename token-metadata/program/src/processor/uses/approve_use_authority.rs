@@ -1,10 +1,8 @@
 use borsh::BorshSerialize;
 use mpl_utils::{assert_signer, create_or_allocate_account_raw};
 use solana_program::{
-    account_info::{next_account_info, AccountInfo},
-    entrypoint::ProgramResult,
-    program::invoke,
-    pubkey::Pubkey,
+    account_info::AccountInfo, entrypoint::ProgramResult, program::invoke,
+    program_error::ProgramError, pubkey::Pubkey,
 };
 use spl_token::instruction::approve;
 
@@ -25,17 +23,27 @@ pub fn process_approve_use_authority(
     accounts: &[AccountInfo],
     number_of_uses: u64,
 ) -> ProgramResult {
-    let account_info_iter = &mut accounts.iter();
-    let use_authority_record_info = next_account_info(account_info_iter)?;
-    let owner_info = next_account_info(account_info_iter)?;
-    let payer = next_account_info(account_info_iter)?;
-    let user_info = next_account_info(account_info_iter)?;
-    let token_account_info = next_account_info(account_info_iter)?;
-    let metadata_info = next_account_info(account_info_iter)?;
-    let mint_info = next_account_info(account_info_iter)?;
-    let program_as_burner = next_account_info(account_info_iter)?;
-    let token_program_account_info = next_account_info(account_info_iter)?;
-    let system_account_info = next_account_info(account_info_iter)?;
+    // let account_info_iter = &mut accounts.iter();
+
+    let [use_authority_record_info, owner_info, payer, user_info, token_account_info, metadata_info, mint_info, program_as_burner, token_program_account_info, system_account_info] =
+        match accounts {
+            [use_authority_record_info, owner_info, payer, user_info, token_account_info, metadata_info, mint_info, program_as_burner, token_program_account_info, system_account_info] => {
+                [
+                    use_authority_record_info,
+                    owner_info,
+                    payer,
+                    user_info,
+                    token_account_info,
+                    metadata_info,
+                    mint_info,
+                    program_as_burner,
+                    token_program_account_info,
+                    system_account_info,
+                ]
+            }
+            _ => return Err(ProgramError::NotEnoughAccountKeys),
+        };
+
     let metadata: Metadata = Metadata::from_account_info(metadata_info)?;
 
     if metadata.uses.is_none() {
