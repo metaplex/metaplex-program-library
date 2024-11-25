@@ -156,7 +156,7 @@ pub fn auctioneer_cancel<'info>(
 
     // Close the Listing Config account if the seller is canceling their listing.
     if ctx.accounts.token_account.owner == ctx.accounts.wallet.key()
-        && ctx.accounts.wallet.is_signer
+        && ctx.accounts.wallet.is_signer && buyer_price == AUCTIONEER_BUYER_PRICE
     {
         let listing_config = &ctx.accounts.listing_config.to_account_info();
         let seller = &ctx.accounts.seller.to_account_info();
