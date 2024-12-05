@@ -38,7 +38,12 @@ pub fn remove_member(ctx: Context<RemoveMember>) -> Result<()> {
     assert_owned_by(&fanout.to_account_info(), &crate::ID)?;
     assert_owned_by(&member_voucher.to_account_info(), &crate::ID)?;
     update_fanout_for_remove(fanout)?;
-    if assert_owned_by(&ctx.accounts.member, &spl_token::id()).is_ok() {
+    if assert_owned_by(
+        &ctx.accounts.destination,
+        &anchor_lang::solana_program::system_program::id(),
+    )
+    .is_err()
+    {
         return Err(HydraError::InvalidCloseAccountDestination.into());
     }
     if fanout.membership_model != MembershipModel::NFT

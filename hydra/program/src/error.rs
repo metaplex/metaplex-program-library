@@ -92,6 +92,6 @@ pub enum HydraError {
     #[msg("Before you remove a wallet or NFT member please transfer the shares to another member")]
     RemoveSharesMustBeZero,
 
-    #[msg("Sending Sol to a SPL token destination will render the sol unusable")]
+    #[msg("Sending Sol to a non-Native Account destination will render the sol unusable")]
     InvalidCloseAccountDestination,
 }
