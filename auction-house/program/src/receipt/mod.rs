@@ -98,7 +98,7 @@ pub struct PurchaseReceipt {
     pub created_at: i64,
 }
 
-/// Accounts for the [`print_listing_receipt` hanlder](fn.print_listing_receipt.html).
+/// Accounts for the [`print_listing_receipt` handler](fn.print_listing_receipt.html).
 #[derive(Accounts)]
 #[instruction(receipt_bump: u8)]
 pub struct PrintListingReceipt<'info> {
@@ -214,7 +214,7 @@ pub struct CancelListingReceipt<'info> {
     pub instruction: UncheckedAccount<'info>,
 }
 
-/// Add a cancelation time to a listing receipt.
+/// Add a cancellation time to a listing receipt.
 pub fn cancel_listing_receipt<'info>(
     ctx: Context<'_, '_, '_, 'info, CancelListingReceipt<'info>>,
 ) -> Result<()> {

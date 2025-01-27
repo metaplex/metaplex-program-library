@@ -636,7 +636,7 @@ pub fn assert_valid_trade_state(
 }
 
 // This function verifies that there are enough funds in `account` such that `amount` can be
-// withdrawn.  If there are not sufficent funds it returns an error.  If there are sufficient
+// withdrawn.  If there are not sufficient funds it returns an error.  If there are sufficient
 // funds, it returns any additional amount needed to keep the account above the rent exempt
 // threshold.
 pub fn verify_withdrawal(account: AccountInfo, amount: u64) -> Result<u64> {

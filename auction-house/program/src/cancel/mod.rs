@@ -85,7 +85,7 @@ pub struct CancelRemainingAccounts<'info> {
     pub auth_rules: UncheckedAccount<'info>,
     ///CHECK: checked in cpi
     pub sysvar_instructions: UncheckedAccount<'info>,
-    ///CHECK: chekced in cpi
+    ///CHECK: checked in cpi
     pub system_program: UncheckedAccount<'info>,
 }
 
@@ -124,7 +124,7 @@ pub struct AuctioneerCancel<'info> {
     /// Auction House instance authority account.
     pub authority: UncheckedAccount<'info>,
 
-    /// CHECK: Validated in ah_auctioneer_pda seeds anbd as a signer in cancel_logic.
+    /// CHECK: Validated in ah_auctioneer_pda seeds and as a signer in cancel_logic.
     /// The auctioneer authority - typically a PDA of the Auctioneer program running this action.
     pub auctioneer_authority: Signer<'info>,
 

@@ -682,21 +682,21 @@ pub struct CreateAuctionHouse<'info> {
     #[account(mut)]
     pub payer: Signer<'info>,
 
-    /// CHECK: User can use whatever they want for intialization.
+    /// CHECK: User can use whatever they want for initialization.
     // Authority key for the Auction House.
     pub authority: UncheckedAccount<'info>,
 
-    /// CHECK: User can use whatever they want for intialization.
+    /// CHECK: User can use whatever they want for initialization.
     /// Account that pays for fees if the marketplace executes sales.
     #[account(mut)]
     pub fee_withdrawal_destination: UncheckedAccount<'info>,
 
-    /// CHECK: User can use whatever they want for intialization.
+    /// CHECK: User can use whatever they want for initialization.
     /// SOL or SPL token account to receive Auction House fees. If treasury mint is native this will be the same as the `treasury_withdrawl_destination_owner`.
     #[account(mut)]
     pub treasury_withdrawal_destination: UncheckedAccount<'info>,
 
-    /// CHECK: User can use whatever they want for intialization.
+    /// CHECK: User can use whatever they want for initialization.
     /// Owner of the `treasury_withdrawal_destination` account or the same address if the `treasury_mint` is native.
     pub treasury_withdrawal_destination_owner: UncheckedAccount<'info>,
 
